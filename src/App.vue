@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-toolbar app>
+      <v-spacer></v-spacer>
+      <v-btn color="red" v-on:click="eliminate">SNAP</v-btn>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+    <v-content>
+      <NodeNetwork/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NodeNetwork from './components/NodeNetwork'
+import * as d3 from 'd3';
 export default {
-  name: 'app',
+  
+  name: 'App',
   components: {
-    HelloWorld
+    NodeNetwork
+  },
+  data () {
+    return {
+      //
+    }
+  },
+  methods: {
+    eliminate() {
+      d3.selectAll('.snap0')
+        .transition()
+        .duration(3000)
+        .style('opacity', 0)
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
